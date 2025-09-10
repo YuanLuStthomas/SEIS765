@@ -1,13 +1,14 @@
 from typing import Dict, Any
 from .base import BaseFeatureGenerator
+from app.dataclasses import Email
 
 class SpamFeatureGenerator(BaseFeatureGenerator):
     """Generates spam detection features from email content"""
     
-    def generate_features(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
-        # Extract email content - expect 'subject' and 'body' fields
-        subject = str(raw_data.get('subject', ''))
-        body = str(raw_data.get('body', ''))
+    def generate_features(self, email: Email) -> Dict[str, Any]:
+        # Extract email content from dataclass
+        subject = email.subject
+        body = email.body
         all_text = f"{subject} {body}".lower()
         
         # Spam word detection
@@ -27,10 +28,10 @@ class SpamFeatureGenerator(BaseFeatureGenerator):
 class AverageWordLengthFeatureGenerator(BaseFeatureGenerator):
     """Generates average word length feature from email content"""
     
-    def generate_features(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
-        # Extract email content - expect 'subject' and 'body' fields
-        subject = str(raw_data.get('subject', ''))
-        body = str(raw_data.get('body', ''))
+    def generate_features(self, email: Email) -> Dict[str, Any]:
+        # Extract email content from dataclass
+        subject = email.subject
+        body = email.body
         all_text = f"{subject} {body}"
         
         # Split into words and calculate average length
@@ -51,10 +52,10 @@ class AverageWordLengthFeatureGenerator(BaseFeatureGenerator):
 class EmailEmbeddingsFeatureGenerator(BaseFeatureGenerator):
     """Generates embedding features by averaging title and detail lengths"""
     
-    def generate_features(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
-        # Extract email content - expect 'subject' and 'body' fields
-        subject = str(raw_data.get('subject', ''))
-        body = str(raw_data.get('body', ''))
+    def generate_features(self, email: Email) -> Dict[str, Any]:
+        # Extract email content from dataclass
+        subject = email.subject
+        body = email.body
         
         # Calculate lengths
         title_length = len(subject)
@@ -76,10 +77,10 @@ class EmailEmbeddingsFeatureGenerator(BaseFeatureGenerator):
 class RawEmailFeatureGenerator(BaseFeatureGenerator):
     """Extracts raw email data as features"""
     
-    def generate_features(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
-        # Extract email content - expect 'subject' and 'body' fields
-        subject = str(raw_data.get('subject', ''))
-        body = str(raw_data.get('body', ''))
+    def generate_features(self, email: Email) -> Dict[str, Any]:
+        # Extract email content from dataclass
+        subject = email.subject
+        body = email.body
         
         return {
             "email_subject": subject,
@@ -89,3 +90,9 @@ class RawEmailFeatureGenerator(BaseFeatureGenerator):
     @property
     def feature_names(self) -> list[str]:
         return ["email_subject", "email_body"]
+
+
+# LAB ASSIGNMENT: Add a new feature generator
+# Create a NonTextCharacterFeatureGenerator class that counts non-alphanumeric characters
+# (punctuation, symbols, etc.) in the email subject and body text.
+# Follow the same pattern as the other generators above.

@@ -1,4 +1,4 @@
-from typing import Dict, Any, List, Union
+from typing import Dict, Any, List
 from .base import BaseFeatureGenerator
 from .generators import SpamFeatureGenerator, AverageWordLengthFeatureGenerator, EmailEmbeddingsFeatureGenerator, RawEmailFeatureGenerator
 from app.dataclasses import Email
@@ -17,24 +17,18 @@ class FeatureGeneratorFactory:
     def __init__(self):
         self._generators = GENERATORS
     
-    def generate_all_features(self, data: Union[Email, Dict[str, Any]], 
+    def generate_all_features(self, email: Email, 
                             generator_names: List[str] = None) -> Dict[str, Any]:
         """Generate features using multiple generators"""
         if generator_names is None:
             generator_names = list(self._generators.keys())
-        
-        # Convert Email dataclass to dict if needed for backward compatibility
-        if isinstance(data, Email):
-            raw_data = {"subject": data.subject, "body": data.body}
-        else:
-            raw_data = data
         
         all_features = {}
         
         for gen_name in generator_names:
             generator_class = self._generators[gen_name]
             generator = generator_class()
-            features = generator.generate_features(raw_data)
+            features = generator.generate_features(email)
             
             # Prefix features with generator name to avoid conflicts
             for feature_name, value in features.items():

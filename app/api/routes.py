@@ -72,3 +72,7 @@ async def pipeline_info():
 #     # 1. Load emails from data/emails.json
 #     # 2. Return list of all emails
 #     pass
+
+# LAB ASSIGNMENT: Add a new endpoint to list all available features
+# Create a GET endpoint at "/features" that returns information about all feature generators
+# available in the system. Use the FeatureGeneratorFactory to get this information.
