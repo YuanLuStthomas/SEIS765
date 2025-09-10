@@ -1,0 +1,17 @@
+{
+  "work": {
+    "description": "Work-related emails including meetings, deadlines, and business communications"
+  },
+  "personal": {
+    "description": "Personal communications from friends, family, and personal accounts"
+  },
+  "promotion": {
+    "description": "Sales, discounts, special offers, and marketing emails"
+  },
+  "newsletter": {
+    "description": "Regular updates, subscriptions, and periodic communications"
+  },
+  "support": {
+    "description": "Customer support, help requests, and technical issues"
+  }
+}
