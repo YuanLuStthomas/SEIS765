@@ -109,7 +109,6 @@ During this lab session, you will:
 ### 5. System Architecture Review
 - Map out the data flow from email input to classification output
 - Identify the separation of concerns between different modules
-- Discuss how this architecture could scale for production use
 
 ### 6. Implementation Assignments
 - **Part 1**: Complete the `NonTextCharacterFeatureGenerator` class in `app/features/generators.py:95`
