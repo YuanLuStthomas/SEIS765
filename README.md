@@ -111,6 +111,10 @@ During this lab session, you will:
 - Identify the separation of concerns between different modules
 - Discuss how this architecture could scale for production use
 
+### 6. Implementation Assignments
+- **Part 1**: Complete the `NonTextCharacterFeatureGenerator` class in `app/features/generators.py:95`
+- **Part 2**: Implement the `/features` endpoint in `app/api/routes.py:56`
+
 ## Learning Objectives
 
 - Understand the **Factory Pattern** for extensible feature generation

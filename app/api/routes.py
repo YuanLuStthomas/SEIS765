@@ -53,26 +53,28 @@ async def pipeline_info():
     inference_service = EmailTopicInferenceService()
     return inference_service.get_pipeline_info()
 
-# TODO: Students will implement this endpoint
-# @router.post("/emails", response_model=EmailAddResponse)
-# async def add_email(request: EmailWithTopicRequest):
-#     """Add an email with its ground truth topic to the database"""
-#     # Students will implement:
-#     # 1. Load existing emails from data/emails.json
-#     # 2. Add new email with topic and auto-increment ID
-#     # 3. Save back to file
-#     # 4. Return success response
-#     pass
-
-# TODO: Students will implement this endpoint  
-# @router.get("/emails")
-# async def get_all_emails():
-#     """Get all stored emails from the database"""
-#     # Students will implement:
-#     # 1. Load emails from data/emails.json
-#     # 2. Return list of all emails
-#     pass
-
-# LAB ASSIGNMENT: Add a new endpoint to list all available features
+# TODO: LAB ASSIGNMENT - Part 2 of 2  
 # Create a GET endpoint at "/features" that returns information about all feature generators
-# available in the system. Use the FeatureGeneratorFactory to get this information.
+# available in the system.
+#
+# Requirements:
+# 1. Create a GET endpoint at "/features"
+# 2. Import FeatureGeneratorFactory from app.features.factory
+# 3. Use FeatureGeneratorFactory.get_available_generators() to get generator info
+# 4. Return a JSON response with the available generators and their feature names
+# 5. Handle any exceptions with appropriate HTTP error responses
+#
+# Expected response format:
+# {
+#   "available_generators": [
+#     {
+#       "name": "spam",
+#       "features": ["has_spam_words"]
+#     },
+#     ...
+#   ]
+# }
+#
+# Hint: Look at the existing endpoints above for patterns on error handling
+# Hint: You may need to instantiate generators to get their feature names
+

@@ -92,7 +92,17 @@ class RawEmailFeatureGenerator(BaseFeatureGenerator):
         return ["email_subject", "email_body"]
 
 
-# LAB ASSIGNMENT: Add a new feature generator
+# TODO: LAB ASSIGNMENT - Part 1 of 2
 # Create a NonTextCharacterFeatureGenerator class that counts non-alphanumeric characters
 # (punctuation, symbols, etc.) in the email subject and body text.
-# Follow the same pattern as the other generators above.
+# 
+# Requirements:
+# 1. Inherit from BaseFeatureGenerator
+# 2. Implement generate_features(self, email: Email) -> Dict[str, Any]:
+#    - Count non-alphanumeric characters in both subject and body
+#    - Return a dictionary with "non_text_char_count" as the key
+# 3. Implement the feature_names property to return ["non_text_char_count"]
+# 4. Follow the same pattern as the other generators above
+# 
+# Hint: Use email.subject and email.body to access the text
+# Hint: You can use regex or string methods to count non-alphanumeric characters
