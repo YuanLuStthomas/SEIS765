@@ -82,66 +82,41 @@ Visit `http://YOUR_EC2_PUBLIC_IP:8000/docs` in your browser for:
 4. **`app/api/routes.py`** - REST API endpoints
 5. **`data/topic_keywords.json`** - Topic definitions and descriptions
 
-## Your Assignment
+## Lab Activities
 
-Implement two new REST endpoints in `app/api/routes.py`:
+During this lab session, you will:
 
-### 1. Add Email to Database
-```python
-@router.post("/emails", response_model=EmailAddResponse)
-async def add_email(request: EmailWithTopicRequest):
-    # TODO: Implement this endpoint
-    # 1. Load existing emails from data/emails.json
-    # 2. Add new email with topic and auto-increment ID  
-    # 3. Save back to file
-    # 4. Return success response
-```
+### 1. Explore the Factory Pattern
+- Examine `app/features/factory.py` to understand how the Factory Pattern creates different feature generators
+- Look at `app/features/generators.py` to see the different feature generator implementations
+- Test how adding new generators would extend the system's capabilities
 
-### 2. Get All Emails
-```python
-@router.get("/emails")
-async def get_all_emails():
-    # TODO: Implement this endpoint
-    # 1. Load emails from data/emails.json
-    # 2. Return list of all emails
-```
+### 2. Understand the Classification Pipeline
+- Review `app/models/similarity_model.py` to see how cosine similarity works for email classification
+- Examine `data/topic_keywords.json` to understand topic definitions
+- Test the classification endpoint with different email examples
 
-### Expected Email Storage Format
-```json
-[
-  {
-    "id": 1,
-    "subject": "Meeting tomorrow",
-    "body": "Let's discuss the project", 
-    "topic": "work"
-  }
-]
-```
+### 3. API Exploration and Testing
+- Use the interactive Swagger documentation at `/docs` to explore all endpoints
+- Test email classification with various email types (work, personal, promotional, etc.)
+- Experiment with the pipeline information endpoint to understand system internals
 
-## Testing Your Implementation
+### 4. Code Analysis and Discussion
+- Discuss how the Factory Pattern makes the feature generation system extensible
+- Analyze the trade-offs between embedding-based similarity and other classification approaches
+- Explore how the system handles different types of email content
 
-### Test Adding an Email
-```bash
-curl -X POST "http://YOUR_EC2_PUBLIC_IP:8000/emails" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "subject": "Family dinner this weekend",
-    "body": "Join us for dinner on Sunday at 6pm",
-    "topic": "personal"
-  }'
-```
-
-### Test Getting All Emails  
-```bash
-curl http://YOUR_EC2_PUBLIC_IP:8000/emails
-```
+### 5. System Architecture Review
+- Map out the data flow from email input to classification output
+- Identify the separation of concerns between different modules
+- Discuss how this architecture could scale for production use
 
 ## Learning Objectives
 
 - Understand the **Factory Pattern** for extensible feature generation
 - Learn **embedding-based similarity** for classification
-- Practice **REST API design** following proper conventions
-- Implement **file-based data persistence** as a database substitute
+- Analyze **REST API design** following proper conventions
+- Explore **file-based data persistence** patterns
 - Experience **machine learning pipeline** architecture
 
 ## Troubleshooting
@@ -150,5 +125,3 @@ curl http://YOUR_EC2_PUBLIC_IP:8000/emails
 - **Port issues**: Check that port 8000 is open in your EC2 security group
 - **JSON errors**: Use the Swagger docs at `/docs` for proper request format
 - **File permissions**: Ensure the `data/` directory is writable
-
-Good luck with your implementation!
