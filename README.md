@@ -110,9 +110,6 @@ During this lab session, you will:
 - Map out the data flow from email input to classification output
 - Identify the separation of concerns between different modules
 
-### 6. Implementation Assignments
-- **Part 1**: Complete the `NonTextCharacterFeatureGenerator` class in `app/features/generators.py:95`
-- **Part 2**: Implement the `/features` endpoint in `app/api/routes.py:56`
 
 ## Learning Objectives
 

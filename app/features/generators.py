@@ -1,6 +1,8 @@
 from typing import Dict, Any
 from .base import BaseFeatureGenerator
 from app.dataclasses import Email
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 class SpamFeatureGenerator(BaseFeatureGenerator):
     """Generates spam detection features from email content"""
@@ -50,25 +52,36 @@ class AverageWordLengthFeatureGenerator(BaseFeatureGenerator):
 
 
 class EmailEmbeddingsFeatureGenerator(BaseFeatureGenerator):
-    """Generates embedding features by averaging title and detail lengths"""
-    
+    """Generates embedding features using sentence transformers"""
+
+    # Class-level model instance (loaded once and shared)
+    _model = None
+
+    @classmethod
+    def _get_model(cls):
+        """Lazy load the sentence transformer model"""
+        if cls._model is None:
+            # Use a small, efficient model (80MB, fast inference)
+            cls._model = SentenceTransformer('all-MiniLM-L6-v2')
+        return cls._model
+
     def generate_features(self, email: Email) -> Dict[str, Any]:
         # Extract email content from dataclass
         subject = email.subject
         body = email.body
-        
-        # Calculate lengths
-        title_length = len(subject)
-        detail_length = len(body)
-        
-        # Average of title and detail lengths
-        if title_length == 0 and detail_length == 0:
-            average_embedding = 0.0
-        else:
-            average_embedding = (title_length + detail_length) / 2
-        
-        return {"average_embedding": average_embedding}
-    
+
+        # Combine subject and body for embedding
+        email_text = f"{subject} {body}"
+
+        # Generate embedding using sentence transformer
+        model = self._get_model()
+        embedding = model.encode(email_text, convert_to_numpy=True)
+
+        # Convert to list for JSON serialization
+        embedding_list = embedding.tolist()
+
+        return {"average_embedding": embedding_list}
+
     @property
     def feature_names(self) -> list[str]:
         return ["average_embedding"]
@@ -90,6 +103,9 @@ class RawEmailFeatureGenerator(BaseFeatureGenerator):
     @property
     def feature_names(self) -> list[str]:
         return ["email_subject", "email_body"]
+
+# TODO: Lab Assignment - Part 0 of 2
+# Extend the embedding feature generator to include the email body as well as the subject
 
 
 # TODO: LAB ASSIGNMENT - Part 1 of 2
