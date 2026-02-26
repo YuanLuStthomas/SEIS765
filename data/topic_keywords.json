@@ -13,5 +13,8 @@
   },
   "support": {
     "description": "Customer support, help requests, and technical issues"
+  },
+  "travel": {
+    "description": "Flights, hotels, tickets, itineraries and travel planning"
   }
 }
