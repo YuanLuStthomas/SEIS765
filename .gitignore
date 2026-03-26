@@ -1,0 +1,48 @@
+
+# Airflow local metadata
+airflow_home/
+logs/
+
+# Local virtualenv
+venv/
+.venv/
+~/venvs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
+
+# Airflow local metadata
+airflow_home/
+logs/
+
+# Local virtualenv
+venv/
+.venv/
+~/venvs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
+
+# Airflow local metadata
+airflow_home/
+logs/
+
+# Local virtualenv
+venv/
+.venv/
+~/venvs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
