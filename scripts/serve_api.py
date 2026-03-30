@@ -3,7 +3,7 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
 
 from app.api import create_app
-app = create_app("models/iris_model.pkl")
+app = create_app("models/model.pkl")
 
 if __name__ == "__main__":
     import uvicorn

@@ -46,3 +46,19 @@ __pycache__/
 
 # OS/editor
 .DS_Store
+
+# Model artifacts
+models/
+*.pkl
+
+# Model artifacts
+models/
+*.pkl
+
+# Model artifacts
+models/
+*.pkl
+
+# Model artifacts
+models/
+*.pkl
